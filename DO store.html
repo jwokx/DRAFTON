@@ -1,0 +1,491 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DRAFT.ON - Game Store</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    cursor: pointer;
+  }
+
+
+  
+  
+ 
+  nav a:hover {
+    color: #00b7ff83;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(90deg, #0059ffc0 0%, #008bcc 100%);
+    padding: 1rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 2px solid #004a78;
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 0 0 1rem;
+    letter-spacing: 2px;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: #d0f0ff;
+  }
+  .hero button {
+    background-color: #121212;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 9px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+  }
+  .hero button:hover {
+    background-color: #00b8ff;
+    color: #121212;
+  }
+
+  /* Games Grid */
+  .games-container {
+    max-width: 1200px;
+    margin: 3rem auto 5rem;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .game-card {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .game-card:hover {
+    transform: translateY(-5px);
+  }
+  .game-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+  .game-content {
+    padding: 1rem 1.2rem 1.4rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .game-title {
+    margin: 0 0 0.5rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #ffffff;
+  }
+  .game-description {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+  }
+  .game-button {
+    background-color: #00b8ff;
+    color: #121212;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .game-button:hover {
+    background-color: #008ecf;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #171717;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .hero p {
+      font-size: 1rem;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      text-decoration: none;
+      list-style: none;
+    }
+
+  
+    
+
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 80px;
+      width: 100%;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 80px;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: aliceblue;
+      font-weight: bold;
+      font-size: 17px;
+      padding: 7px 13px;
+      border-radius: 3px;
+    }
+
+    nav ul li a:hover {
+      background: linear-gradient(90deg, rgba(0, 242, 255, 0.425), rgba(0, 68, 255, 0.425));
+      transition: 0.5s;
+    }
+
+
+
+
+
+
+
+.game-categories {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-button {
+  background-color: #00b8ff;
+  color: #121212;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: #008ecf;
+}
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<header>
+ 
+  <nav>
+      <nav>
+    <div class="logo">
+      <img src="logoF.jpg" alt="logo" />
+    </div>
+    <ul>
+      <li><a href="home.html" id="homeLink">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="home.html">Contact</a></li>
+      <li><a href="home.html">Services</a></li>
+      <li><a href="index.html">Account</a></li>
+    </ul>
+  </nav>
+  </nav>
+</header>
+
+<section class="hero"> 
+  <h1>DRAFT ON Game Store</h1>
+  <p>Your ultimate free game store. Play your favorite titles like Valorant, Crossfire, Call of Duty and many more—all completely free.</p>
+  <button onclick="location.href='#Hot PC Games'" class="category-button">Browse Games</button>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- Category Navigation Buttons -->
+<section style="text-align: center; margin: 2rem 0;">
+  <button onclick="location.href='#Offline Games'" class="category-button">Offline Games</button>
+  <button onclick="location.href='#Hot PC Games'" class="category-button">Hot PC Games</button>
+  <button onclick="location.href='#Mobile Games'" class="category-button">Mobile Games</button>
+</section>
+
+<!--Hot PC Games -->
+<section id="Hot PC Games" class="games-container">
+  <h2 style="color:white;">Hot PC Games</h2>
+
+  <article class="game-card">
+    <img class="game-image" src="https://img.gurugamer.com/resize/740x-/2020/04/09/d53a6c94835093-5e88ae4849b8b-9532.png" alt="Valorant" />
+    <div class="game-content">
+      <h3 class="game-title">Valorant</h3>
+      <p class="game-description">A tactical first-person shooter from Riot Games.</p>
+      <button class="game-button" onclick="location.href='https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.ap.exe'"> Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://apps-on-mac.com/wp-content/uploads/2021/08/crossfire.jpg" alt="Crossfire" />
+    <div class="game-content">
+      <h3 class="game-title">Crossfire</h3>
+      <p class="game-description">The world’s most popular online tactical FPS game.</p>
+      <button class="game-button" onclick="location.href='https://crossfire.en.uptodown.com/windows/download'"> Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/hero/mw-wz/WZ-Season-Three-Announce-TOUT.jpg" alt="Call of Duty" />
+    <div class="game-content">
+      <h3 class="game-title">Call of Duty</h3>
+      <p class="game-description">An iconic FPS franchise with thrilling multiplayer.</p>
+      <button class="game-button" onclick="location.href='https://www.callofduty.com/'">Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://th.bing.com/th/id/OIP.nL1ND_HdbwAbmKBFpxqd6wHaEK?w=308&h=180&c=7&r=0&o=5&pid=1.7" alt="Firelight 84" />
+    <div class="game-content">
+      <h3 class="game-title">Firelight 84</h3>
+      <p class="game-description">A tactical 3rd-person shooter Game.</p>
+      <button class="game-button" onclick="location.href='https://farlight84.farlightgames.com/download/index.html'">Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://th.bing.com/th/id/OIP.ZWrQOmNMwJKs2KleYklvqAHaEK?w=309&h=180&c=7&r=0&o=5&pid=1.7" alt="Fortnite" />
+    <div class="game-content">
+      <h3 class="game-title">Fortnite</h3>
+      <p class="game-description">A battle royale with building and evolving gameplay.</p>
+      <button class="game-button" onclick="location.href='https://www.ea.com/games/fight-night'">Download</button>
+    </div>
+  </article>
+</section>
+
+<!-- Mobile Games -->
+<section id="Mobile Games" class="games-container">
+  <h2 style="color:white;">Mobile Games</h2>
+
+  <article class="game-card">
+    <img class="game-image" src="https://th.bing.com/th/id/OIP.Km-1H-G2xFYWLD8RvgamGQHaEK?w=312&h=180&c=7&r=0&o=5&pid=1.7" alt="Mobile Legend" />
+    <div class="game-content">
+      <h3 class="game-title">Mobile Legend Bang Bang</h3>
+      <p class="game-description">Mobile Legends: Bang Bang is a multiplayer online battle arena (MOBA) game.</p>
+      <button class="game-button" onclick="location.href='#Mobile Legend Bang Bang'">Download</button>
+    </div>
+  </article>
+
+
+<article class="game-card">
+    <img class="game-image" src="https://dafunda.com/wp-content/uploads/2024/04/Daftar-Hero-Honor-of-Kings-HoK-jpg.webp" alt="Honor Of King" />
+    <div class="game-content">
+      <h3 class="game-title">Honor Of King</h3>
+      <p class="game-description">A multiplayer online battle arena (MOBA) game.</p>
+      <button class="game-button" onclick="location.href='#Honor Of King'">Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://static1.gamerantimages.com/wordpress/wp-content/uploads/2021/05/call-of-duty-mobile-banner-promotion.jpg" alt="Call of Duty" />
+    <div class="game-content">
+      <h3 class="game-title">Call of Duty</h3>
+      <p class="game-description">An iconic FPS franchise with thrilling multiplayer.</p>
+      <button class="game-button" onclick="location.href='#Call of Duty'"> Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://images.hdqwalls.com/wallpapers/pubg-mobile-z1.jpg" alt="Pubg mobile" />
+    <div class="game-content">
+      <h3 class="game-title">PubG MObile</h3>
+      <p class="game-description"> battle royale game  multiplayer action, engage in 100-player battles, survive fierce competition, and be the last one standing.</p>
+      <button class="game-button" onclick="location.href='#Pubg Mobile'"> Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://play-lh.googleusercontent.com/uhOsp07bk-PRDo5xsZ8bvrcftkrR0WjSThJMj8nndgbmBbQJp5a-NEkuGrXL7uA8jA=w1920" alt="Firelight 84" />
+    <div class="game-content">
+      <h3 class="game-title">Firelight 84</h3>
+      <p class="game-description">A battle royale with building and evolving gameplay.</p>
+      <button class="game-button" onclick="location.href='#Firelight 84'">Download</button>
+    </div>
+  </article>
+</section>
+
+<!-- Casual Games -->
+<section id="Offline Games" class="games-container">
+  <h2 style="color:white;">Offline Games</h2>
+
+  <article class="game-card">
+    <img class="game-image" src="https://cdn.wccftech.com/wp-content/uploads/2022/08/diablo-iv-HD-scaled.jpg" alt="Diablo IV" />
+    <div class="game-content">
+      <h3 class="game-title">Diablo IV</h3>
+      <p class="game-description">A survival game in the demon world .</p>
+      <button class="game-button" onclick="location.href='#Diablo IV'">Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://www.autisticgames.com/games/images/20230525/block_blast_adventure_master_1684987328760.jpg" alt="Black Blast" />
+    <div class="game-content">
+      <h3 class="game-title">Black Blast</h3>
+      <p class="game-description">fun to play puzzle game time killer.</p>
+      <button class="game-button" onclick="location.href='#Black Blast'">Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_THEKINGOFFIGHTERSXV_SNKCORPORATION_S1_2560x1440-5d55ab8f79aeef9e9886bac3bbbf2204" alt="
+THE KING OF FIGHTERS XV Deluxe Edition" />
+    <div class="game-content">
+      <h3 class="game-title">THE KING OF FIGHTERS XV Deluxe Edition</h3>
+      <p class="game-description">1 VS 1 OG Game.</p>
+      <button class="game-button" onclick="location.href='#THE KING OF FIGHTERS'">Download</button>
+    </div>
+  </article>
+
+   <article class="game-card">
+    <img class="game-image" src="https://th.bing.com/th/id/R.20fc541dac90467cb4fd5a39d4e6896e?rik=DoukFEczjW80Jw&riu=http%3a%2f%2fs1.picswalls.com%2fwallpapers%2f2014%2f09%2f22%2fleft-4-dead-2-high-definition-wallpaper_043847279_234.png&ehk=WfRTGvhmM46%2bnQTMGa8ljNyKrs%2fhRCuTTfo0%2foNxRe8%3d&risl=&pid=ImgRaw&r=0" alt="left 4 dead 2" />
+    <div class="game-content">
+      <h3 class="game-title">left 4 dead 2</h3>
+      <p class="game-description">A survival horror shoting game.</p>
+      <button class="game-button" onclick="location.href='#left 4 dead 2'">Download</button>
+    </div>
+  </article>
+
+  <article class="game-card">
+    <img class="game-image" src="https://image.api.playstation.com/vulcan/ap/rnd/202009/1710/UUnpHLJqLAIJX5HioswiPuAm.png" alt="Devil May Cry5" />
+    <div class="game-content">
+      <h3 class="game-title">Devil May Cry 5</h3>
+      <p class="game-description">A survival game with demons.</p>
+      <button class="game-button" onclick="location.href='#mDevil May Cry5'"> Download</button>
+    </div>
+  </article>
+</section>
+
+
+<!-- About Section -->
+<section id="about" style="max-width: 900px; margin: 0 auto 5rem; padding: 0 1rem;">
+  <h2 style="color: #ffffff; font-weight: 700; text-align: center; margin-bottom: 1.5rem;">About DRAFT ON</h2>
+  <p style="font-size: 1.1rem; line-height: 1.6; color: #ccc; text-align: center;">
+    DRAFT ON is a free game store dedicated to bringing you top-tier games for free. Our curated collection features fan-favorite titles and epic adventures all without cost.
+  </p>
+</section>
+
+<footer>
+  &copy; 2024 DRAFT ON. All games are free to play. Other brands or product names are the trademarks of their respective owners.
+</footer>
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

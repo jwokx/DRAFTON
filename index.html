@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Draft On
+    
+  </title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      list-style: none;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url('photo5.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 80px;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 80px;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: aliceblue;
+      font-weight: bolder;
+      font-size: 17px;
+      padding: 7px 13px;
+      border-radius: 3px;
+    }
+
+    nav ul li a:hover {
+      background: linear-gradient(90deg, rgba(0, 242, 255, 0.425), rgba(0, 68, 255, 0.425));
+      transition: 0.5s;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 40px;
+      width: 420px;
+      margin: auto;
+      position: absolute;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    input {
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    input::placeholder {
+      color: #eee;
+    }
+
+    .submit-btn, .logout-btn {
+      padding: 12px;
+      margin-top: 15px;
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover, .logout-btn:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-switch-text {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .form-switch-text a {
+      color: #00ffff;
+      cursor: pointer;
+    }
+
+    #logoutBox {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <img src="logoF.jpg" alt="logo" />
+    </div>
+    <ul>
+      <li><a href="home.html" class="protected-link">Home</a></li>
+      <li><a href="home.html" class="protected-link">About</a></li>
+      <li><a href="home.html" class="protected-link">Contact</a></li>
+      <li><a href="home.html" class="protected-link">Services</a></li>
+      <li><a href="index.html">Account</a></li>
+    </ul>
+  </nav>
+
+  <div class="container" id="formBox">
+    <h1 id="formHeading">Sign Up</h1>
+
+    <!-- Signup Form -->
+    <form id="signupForm" class="active">
+      <input type="text" placeholder="First Name" required />
+      <input type="text" placeholder="Last Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button class="submit-btn" type="submit">Create Account</button>
+      <p class="form-switch-text">
+        Already have an account? <a id="switchToSignin">Sign In</a>
+      </p>
+    </form>
+
+    <!-- Signin Form -->
+    <form id="signinForm">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button class="submit-btn" type="submit">Sign In</button>
+      <p class="form-switch-text">
+        Don’t have an account? <a id="switchToSignup">Sign Up</a>
+      </p>
+    </form>
+
+    <!-- Logout Box -->
+    <div id="logoutBox">
+      <p>You are signed in.</p>
+      <button class="logout-btn" id="logoutBtn">Log Out</button>
+    </div>
+  </div>
+
+  <div id="mobile-warning" style="display:none; padding: 40px; color: red; text-align: center; font-size: 22px; background-color: #111; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
+  <strong>Error:</strong> This website can only be used on PCs (desktops/laptops).
+</div>
+
+
+   
+
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCRr36BrzW9eG3raVLRCODvD3f-9TB0uBQ",
+      authDomain: "draft-on-afe27.firebaseapp.com",
+      projectId: "draft-on-afe27",
+      storageBucket: "draft-on-afe27.appspot.com",
+      messagingSenderId: "1071402033136",
+      appId: "1:1071402033136:web:a8cead5b292b6c7e3cc735"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const signupForm = document.getElementById('signupForm');
+    const signinForm = document.getElementById('signinForm');
+    const logoutBox = document.getElementById('logoutBox');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const formHeading = document.getElementById('formHeading');
+
+    const switchToSignin = document.getElementById('switchToSignin');
+    const switchToSignup = document.getElementById('switchToSignup');
+
+    const protectedLinks = document.querySelectorAll('.protected-link');
+
+    function lockProtectedLinks() {
+      protectedLinks.forEach(link => {
+        link.style.pointerEvents = 'none';
+        link.style.opacity = '0.5';
+        link.title = 'Please sign in to access';
+      });
+    }
+
+    function unlockProtectedLinks() {
+      protectedLinks.forEach(link => {
+        link.style.pointerEvents = 'auto';
+        link.style.opacity = '1';
+        link.title = '';
+      });
+    }
+
+    function showSignupForm() {
+      signupForm.classList.add('active');
+      signinForm.classList.remove('active');
+      logoutBox.style.display = 'none';
+      formHeading.textContent = 'Sign Up';
+    }
+
+    function showSigninForm() {
+      signinForm.classList.add('active');
+      signupForm.classList.remove('active');
+      logoutBox.style.display = 'none';
+      formHeading.textContent = 'Sign In';
+    }
+
+    switchToSignin.onclick = (e) => {
+      e.preventDefault();
+      showSigninForm();
+    };
+
+    switchToSignup.onclick = (e) => {
+      e.preventDefault();
+      showSignupForm();
+    };
+
+    function showMessage(form, message, color = 'green') {
+      let msg = form.querySelector('.message');
+      if (!msg) {
+        msg = document.createElement('div');
+        msg.className = 'message';
+        form.appendChild(msg);
+      }
+      msg.textContent = message;
+      msg.style.color = color;
+    }
+
+    signupForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const email = signupForm.querySelector('input[type="email"]').value;
+      const password = signupForm.querySelector('input[type="password"]').value;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        signupForm.reset();
+      } catch (err) {
+        showMessage(signupForm, err.message, 'red');
+      }
+    };
+
+    signinForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const email = signinForm.querySelector('input[type="email"]').value;
+      const password = signinForm.querySelector('input[type="password"]').value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        signinForm.reset();
+      } catch (err) {
+        showMessage(signinForm, err.message, 'red');
+      }
+    };
+
+    logoutBtn.onclick = async () => {
+      try {
+        await signOut(auth);
+      } catch (err) {
+        alert('Error signing out: ' + err.message);
+      }
+    };
+  
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        signupForm.classList.remove('active');
+        signinForm.classList.remove('active');
+        logoutBox.style.display = 'flex';
+        formHeading.textContent = 'Welcome';
+        unlockProtectedLinks();
+      } else {
+        showSignupForm();
+        lockProtectedLinks();
+      }
+    });
+
+    showSignupForm(); // Default
+
+  // Detect mobile
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.body.innerHTML = ''; // Clear page content
+    document.body.appendChild(document.getElementById('mobile-warning'));
+    document.getElementById('mobile-warning').style.display = 'block';
+  }
+
+  </script>
+</body>
+</html>
+
